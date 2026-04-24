@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Pixel World - Terraria Style</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="gameContainer">
+    <canvas id="gameCanvas" width="1200" height="700"></canvas>
+    <div id="blockPreview"></div>
+
+    <div id="ui">
+      <div class="stat-row">
+        <span class="stat-label">VIDA</span>
+        <div id="healthBar" class="bar"><div class="bar-fill" id="healthBarFill" style="width:100%"></div></div>
+        <span class="stat-value" id="healthText">100</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-label">FOME</span>
+        <div id="hungerBar" class="bar"><div class="bar-fill" id="hungerBarFill" style="width:100%"></div></div>
+        <span class="stat-value" id="hungerText">100</span>
+      </div>
+
+      <div class="stat-row">
+        <span class="stat-label">EXP</span>
+        <div id="expBar" class="bar"><div class="bar-fill" id="expBarFill" style="width:0%"></div></div>
+        <span class="stat-value" id="expText">0</span>
+      </div>
+
+      <div id="coins">MOEDAS: <span id="coinCount">50</span></div>
+      <div id="level">NIVEL: <span id="levelCount">1</span></div>
+    </div>
+
+    <div id="controls">
+      <div style="color:#f1c40f;margin-bottom:5px;">CONTROLES</div>
+      <div>A/D - Mover</div>
+      <div>W/ESPACO - Pular</div>
+      <div>CLICK - Minerar/Atacar</div>
+      <div>CLICK DIR - Colocar</div>
+      <div>E - Inventario</div>
+      <div>F - Interagir</div>
+      <div>1-9 - Hotbar</div>
+    </div>
+
+    <div id="hotbar"></div>
+
+    <div id="inventory">
+      <span class="close-btn" onclick="toggleInventory()">X</span>
+      <div class="menu-title">INVENTARIO</div>
+      <div class="inv-section-title">HOTBAR</div>
+      <div class="inv-grid" id="hotbarGrid" style="grid-template-columns:repeat(9,36px);"></div>
+      <div class="inv-section-title">MOCHILA</div>
+      <div class="inv-grid" id="invGrid" style="grid-template-columns:repeat(9,36px);"></div>
+      <div class="inventory-help">CLICK = SELECIONAR/MOVER | CLICK DIR = USAR</div>
+    </div>
+
+    <div id="craftingMenu">
+      <span class="close-btn" onclick="closeCrafting()">X</span>
+      <div class="menu-title">CRAFTING</div>
+      <div id="recipeList" style="max-height:400px;overflow-y:auto;"></div>
+    </div>
+
+    <div id="furnaceMenu">
+      <span class="close-btn" onclick="closeFurnace()">X</span>
+      <div class="menu-title">FORNALHA</div>
+      <div id="furnaceRecipes"></div>
+    </div>
+
+    <div id="chestMenu">
+      <span class="close-btn" onclick="closeChest()">X</span>
+      <div class="menu-title">BAU</div>
+      <div class="inv-grid" id="chestGrid" style="grid-template-columns:repeat(10,36px);"></div>
+    </div>
+
+    <div id="shopMenu">
+      <span class="close-btn" onclick="closeShop()">X</span>
+      <div class="menu-title">LOJA</div>
+      <div id="shopItems"></div>
+    </div>
+
+    <div id="bossSpawnMenu">
+      <span class="close-btn" onclick="closeBossSpawn()">X</span>
+      <div class="menu-title">INVOCAR BOSS</div>
+      <div id="bossSpawnContent"></div>
+    </div>
+
+    <div id="bossHealth">
+      <div id="bossName">GOLEM DE PEDRA</div>
+      <div class="bar"><div class="bar-fill" id="bossHealthFill" style="width:100%"></div></div>
+    </div>
+
+    <div id="message"></div>
+
+    <div id="gameOverScreen">
+      <div class="overlay-content">
+        <div class="overlay-title" style="color:#e74c3c;">GAME OVER</div>
+        <div style="margin:20px 0;color:#888;">
+          <div>Moedas: <span id="gameoverCoins">0</span></div>
+          <div>Tempo: <span id="gameoverTime">0</span>s</div>
+        </div>
+        <button class="overlay-btn" onclick="restartGame()">REINICIAR</button>
+      </div>
+    </div>
+
+    <div id="victoryScreen">
+      <div class="overlay-content">
+        <div class="overlay-title" style="color:#27ae60;">VITORIA!</div>
+        <div style="margin:20px 0;color:#888;">
+          <div>Moedas: <span id="victoryCoins">0</span></div>
+          <div>Nivel: <span id="victoryLevel">1</span></div>
+        </div>
+        <button class="overlay-btn" onclick="restartGame()">JOGAR NOVAMENTE</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
